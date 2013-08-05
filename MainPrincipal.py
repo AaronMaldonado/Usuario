@@ -56,7 +56,7 @@ class MainPrincipal(QtGui.QWidget):
             self.model.setData(index, row['fecha_nacimiento'])
             
             r = r+1
-	#cremos las dimenciones columnas de la grilla
+	#creamos las dimenciones columnas de la grilla
         self.ui.table_usuarios.setModel(self.model)
         self.ui.table_usuarios.setColumnWidth(0, 110)
         self.ui.table_usuarios.hideColumn(1)
