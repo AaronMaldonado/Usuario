@@ -56,7 +56,7 @@ class MainPrincipal(QtGui.QWidget):
             self.model.setData(index, row['fecha_nacimiento'])
             
             r = r+1
-	#creamos las dimenciones columnas de la grilla
+	#creamos las dimenciones de las columnas de la grilla
         self.ui.table_usuarios.setModel(self.model)
         self.ui.table_usuarios.setColumnWidth(0, 110)
         self.ui.table_usuarios.hideColumn(1)
@@ -77,7 +77,7 @@ class MainPrincipal(QtGui.QWidget):
 	self.ui.btn_search7.clicked.connect(self.buscar_usuario)
 	
 
-    def formulario(self):#Accion boton Editar
+    def formulario(self):#Acción botón Editar
         model=self.ui.table_usuarios.model()
         index=self.ui.table_usuarios.currentIndex()	
         if index.row()== -1:# No se ha seleccionado fila
@@ -88,15 +88,15 @@ class MainPrincipal(QtGui.QWidget):
             formu2=VentanaEdicion.Ventana2(self)
 		
 		
-    def formulario2(self):#Accion boton Agregar
+    def formulario2(self):#Acción botón Agregar
 	formu=VentanaAgregar.Ventana(self)
 	
 	
-    def formulario3(self):#Acción boton Crear Grupo
+    def formulario3(self):#Acción botón Crear Grupo
 	formu3=CreacionGrupo.Ventana_grupos(self)
 		
 		
-    def formulario5(self):#Acción boton eliminar grupo
+    def formulario5(self):#Acción botón eliminar grupo
 	formu4=VentanaEliminarGrupo.Ventana_eliminar(self)
 		
 
