@@ -5,6 +5,7 @@ import sys
 
 from PySide import QtGui, QtCore
 import controller
+from VentanaUsuarios import Ui_Ventana
 from IngresoEdicion import Ui_Ventana_editar
 
 class Ventana2(QtGui.QDialog):
@@ -15,6 +16,8 @@ class Ventana2(QtGui.QDialog):
 		self.ui.setupUi(self)
 		self.show()
 		self.set_listeners()
+		
+		
 	def load_grupos(self):
 		grupos = controller.get_grupos()
 		self.ui.combo_grupos.addItem("Todos", -1)
@@ -24,17 +27,17 @@ class Ventana2(QtGui.QDialog):
 
 	def editar_usuario(self):
 		model=self.ui.table_usuarios.model()
-		index=self.ui.table_usuarios.currentIndex()
-		
-		if index.row() == -1:# No se ha seleccionado fila
+		index=self.ui.table_usuarios.currentIndex()	
+		if index.row()== -1:# No se ha seleccionado fila
 			self.errorMessageDialog = QtGui.QErrorMessage(self)
 			self.errorMessageDialog.showMessage("Debe seleccionar una fila")
 			return False
 		
-	def set_listeners(self):
+		
+	def set_listeners(self):#Acciones de botones editar y salir
 		self.ui.button1.clicked.connect(self.editar_usuario)
 		self.ui.button2.clicked.connect(self.cancel)
 
-	
-	def cancel(self):
+		
+	def cancel(self):#Accion boton salir 
 		self.reject()
