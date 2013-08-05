@@ -16,11 +16,11 @@ class Ui_Ventana(object):
         self.table_usuarios.setSelectionBehavior(QtGui.QAbstractItemView.SelectRows)
         self.table_usuarios.setAlternatingRowColors(True)
         self.table_usuarios.setSortingEnabled(True)       
-	    #eliminar
+	#eliminar
         self.btn_search = QtGui.QPushButton(Window)
         self.btn_search.setGeometry(QtCore.QRect(575, 15, 120, 27))
         self.btn_search.setObjectName("btn_search")
-	    #editar
+	#editar
         self.btn_search2 = QtGui.QPushButton(Window)
         self.btn_search2.setGeometry(QtCore.QRect(463, 15, 110, 27))
         self.btn_search2.setObjectName("btn_search2")
@@ -28,7 +28,7 @@ class Ui_Ventana(object):
         self.btn_search3 = QtGui.QPushButton(Window)
         self.btn_search3.setGeometry(QtCore.QRect(340, 15, 120, 27))
         self.btn_search3.setObjectName("btn_search3")
-		#Busqueda Instantanea
+        #Busqueda Instantanea
         self.search_box = QtGui.QLineEdit(Window)
         self.search_box.setGeometry(QtCore.QRect(20, 18, 300, 25))
         self.search_box.setObjectName("search_box")
@@ -44,7 +44,7 @@ class Ui_Ventana(object):
         self.btn_search6 = QtGui.QPushButton(Window)
         self.btn_search6.setGeometry(QtCore.QRect(575, 45, 120, 27))
         self.btn_search6.setObjectName("btn_search3")
-         #eliminar
+        #eliminar
         self.btn_search7 = QtGui.QPushButton(Window)
         self.btn_search7.setGeometry(QtCore.QRect(20, 45, 120, 27))
         self.btn_search7.setObjectName("btn_search")

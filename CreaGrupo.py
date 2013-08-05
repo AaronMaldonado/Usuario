@@ -28,7 +28,7 @@ class Ui_Ventana_grupo(object):
 	    	
 
     def retranslateUi(self, Window):
-	Window.setWindowTitle(QtGui.QApplication.translate("Window", "Formulario Creación Usuarios", None, QtGui.QApplication.UnicodeUTF8))
+	Window.setWindowTitle(QtGui.QApplication.translate("Window", "Formulario Creación Grupos", None, QtGui.QApplication.UnicodeUTF8))
 	self.button1.setText(QtGui.QApplication.translate("Window", "Crear", None, QtGui.QApplication.UnicodeUTF8))
 	self.button2.setText(QtGui.QApplication.translate("Window", "Salir", None, QtGui.QApplication.UnicodeUTF8))
 	self.label.setText(QtGui.QApplication.translate("Window", "Nombre Grupo :", None, QtGui.QApplication.UnicodeUTF8))
