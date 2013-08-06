@@ -13,7 +13,7 @@ def connect():
 def get_usuarios():
     con = connect()
     c = con.cursor()
-    query = """SELECT g.nombre ,u.id_usuario,u.username, u.nombres, u.apellidos, u.email, u.fecha_nacimiento FROM usuarios u, grupos g WHERE u.fk_id_grupo = g.id_grupo"""
+    query = """SELECT g.nombre ,u.id_usuario,u.username, u.password, u.nombres, u.apellidos, u.email, u.fecha_nacimiento FROM usuarios u, grupos g WHERE u.fk_id_grupo = g.id_grupo"""
     result = c.execute(query)
     usuarios = result.fetchall()
     con.close()
@@ -87,7 +87,7 @@ def crear(nombre):
         result=c.execute(query,[nombre])
         con.commit()
         exito=True
-    except squite3.Error as e:
+    except sqlite3.Error as e:
         exito=True
         print "Error:", e.args[0]
     con.close()
@@ -97,24 +97,34 @@ def crear(nombre):
 def buscar_usuario(word):
     con = connect()
     c= con.cursor()
-    query = """SELECT g.nombre ,u.id_usuario,u.username, u.nombres, u.apellidos, u.email, u.fecha_nacimiento  FROM usuarios u, grupos g WHERE u.fk_id_grupo =g.id_grupo AND (u.username LIKE '%'||?||'%' OR u.nombres LIKE '%'||?||'%' OR u.apellidos LIKE '%'||?||'%' OR u.email LIKE '%'||?||'%' OR u.fecha_nacimiento LIKE '%'||?||'%' OR g.nombre LIKE '%'||?||'%' )"""
+    query = """SELECT g.nombre ,u.id_usuario,u.username, u.password, u.nombres, u.apellidos, u.email, u.fecha_nacimiento  FROM usuarios u, grupos g WHERE u.fk_id_grupo =g.id_grupo AND (u.username LIKE '%'||?||'%' OR u.nombres LIKE '%'||?||'%' OR u.apellidos LIKE '%'||?||'%' OR u.email LIKE '%'||?||'%' OR u.fecha_nacimiento LIKE '%'||?||'%' OR g.nombre LIKE '%'||?||'%' )"""
     result = c.execute(query,[word,word,word,word,word,word])
     usuarios = result.fetchall()
     con.close()
     return usuarios
 
-
+#edita los campos de la base de datos 
 def editar(username,password,nombres,apellidos,email,fecha_nacimiento,id_grupo):
     exito=False
     con=connect()
     c=con.cursor()
-    query="""UPDATE usuarios SET username=?, password=?,nombres=?, apellidos=?,email=?,fecha_nacimiento=? WHERE fk_id_grupo=?"""
+    query="""UPDATE usuarios SET username=?, password=?,nombres=?, apellidos=?,email=?,fecha_nacimiento=?  WHERE fk_id_grupo=?"""
     try:
 	result=c.execute(query,[username,password,nombres,apellidos,email,fecha_nacimiento,id_grupo])
         con.commit()
         exito=True
-    except squile3.Error as e:
+    except sqlite3.Error as e:
 	exito=False
 	print "Error:", e.args[0]
     con.close()
     return exito
+
+#obtiene todo los usuarios de la base de datos
+def obtener_username(usuario):
+	con=connect()
+	c=con.cursor()
+	query="SELECT *FROM usuarios WHERE id_usuario=?"
+	resultado=c.execute(query,[usuario])
+	usuario=resultado.fetchone()
+	con.close()
+	return usuario

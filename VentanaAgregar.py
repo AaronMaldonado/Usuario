@@ -49,7 +49,7 @@ class Ventana(QtGui.QDialog):
 		self.reject()
 	else:
 	    self.errorMessageDialog=QtGui.QErrorMessage(self)
-	    self.errorMessageDialog.showMessage("Password incorrectas")
+	    self.errorMessageDialog.showMessage("Password incorrectas vuelva a intentarlo :)")
 	
 	
     def set_listeners(self):#Acciones de botones

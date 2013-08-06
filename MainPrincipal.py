@@ -30,14 +30,15 @@ class MainPrincipal(QtGui.QWidget):
             busqueda.setCaseSensitivity(QtCore.Qt.CaseInsensitive)
             self.ui.search_box.setCompleter(busqueda)	
         #Creamos nuestra grilla			
-        self.model = QtGui.QStandardItemModel(len(usuarios), 7)
+        self.model = QtGui.QStandardItemModel(len(usuarios), 8)
         self.model.setHorizontalHeaderItem(0,QtGui.QStandardItem(u"grupo"))
         self.model.setHorizontalHeaderItem(1,QtGui.QStandardItem(u"id_usuario"))
         self.model.setHorizontalHeaderItem(2,QtGui.QStandardItem(u"Username"))
-        self.model.setHorizontalHeaderItem(3,QtGui.QStandardItem(u"Nombre"))			
-        self.model.setHorizontalHeaderItem(4,QtGui.QStandardItem(u"Apellidos"))
-        self.model.setHorizontalHeaderItem(5,QtGui.QStandardItem(u"Email"))
-        self.model.setHorizontalHeaderItem(6,QtGui.QStandardItem(u"Fecha Nacimiento"))
+        self.model.setHorizontalHeaderItem(3,QtGui.QStandardItem(u"Password"))
+        self.model.setHorizontalHeaderItem(4,QtGui.QStandardItem(u"Nombre"))			
+        self.model.setHorizontalHeaderItem(5,QtGui.QStandardItem(u"Apellidos"))
+        self.model.setHorizontalHeaderItem(6,QtGui.QStandardItem(u"Email"))
+        self.model.setHorizontalHeaderItem(7,QtGui.QStandardItem(u"Fecha Nacimiento"))
         r = 0
         for row in usuarios:#le agregamos los elementos 
             index = self.model.index(r, 0, QtCore.QModelIndex()); 
@@ -47,12 +48,14 @@ class MainPrincipal(QtGui.QWidget):
             index = self.model.index(r, 2, QtCore.QModelIndex()); 
             self.model.setData(index, row['Username'])
             index = self.model.index(r, 3, QtCore.QModelIndex()); 
-            self.model.setData(index, row['Nombres'])
+            self.model.setData(index, row['Password'])
             index = self.model.index(r, 4, QtCore.QModelIndex()); 
-            self.model.setData(index, row['Apellidos'])
+            self.model.setData(index, row['Nombres'])
             index = self.model.index(r, 5, QtCore.QModelIndex()); 
+            self.model.setData(index, row['Apellidos'])
+            index = self.model.index(r, 6, QtCore.QModelIndex()); 
             self.model.setData(index, row['Email'])
-	    index = self.model.index(r, 6, QtCore.QModelIndex()); 
+	    index = self.model.index(r, 7, QtCore.QModelIndex()); 
             self.model.setData(index, row['fecha_nacimiento'])
             
             r = r+1
@@ -61,31 +64,21 @@ class MainPrincipal(QtGui.QWidget):
         self.ui.table_usuarios.setColumnWidth(0, 110)
         self.ui.table_usuarios.hideColumn(1)
         self.ui.table_usuarios.setColumnWidth(2, 150)
-        self.ui.table_usuarios.setColumnWidth(3, 150)
+        self.ui.table_usuarios.hideColumn(3)
         self.ui.table_usuarios.setColumnWidth(4, 150)
-        self.ui.table_usuarios.setColumnWidth(5, 170)
+        self.ui.table_usuarios.setColumnWidth(5, 150)
         self.ui.table_usuarios.setColumnWidth(6, 170)
+        self.ui.table_usuarios.setColumnWidth(7, 170)
 	
 	
     def set_signals(self):#Acciones de Botones
-	self.ui.btn_search.clicked.connect(self.delete)
-	self.ui.btn_search2.clicked.connect(self.formulario)
-	self.ui.btn_search3.clicked.connect(self.formulario2)  
-	self.ui.btn_search4.clicked.connect(self.formulario3)
-	#self.ui.btn_search5.clicked.connect(self.formulario4)
-	self.ui.btn_search6.clicked.connect(self.formulario5)
-	self.ui.btn_search7.clicked.connect(self.buscar_usuario)
-	
-
-    def formulario(self):#Acción botón Editar
-        model=self.ui.table_usuarios.model()
-        index=self.ui.table_usuarios.currentIndex()	
-        if index.row()== -1:# No se ha seleccionado fila
-            self.errorMessageDialog = QtGui.QErrorMessage(self)
-            self.errorMessageDialog.showMessage("Debe seleccionar una fila")
-            return False
-        else:
-            formu2=VentanaEdicion.Ventana2(self)
+	self.ui.btn_search.clicked.connect(self.delete)#boton eliminar usuario
+	self.ui.btn_search2.clicked.connect(self.editar)#boton editar usuario
+	self.ui.btn_search3.clicked.connect(self.formulario2)#Boton crear usuario  
+	self.ui.btn_search4.clicked.connect(self.formulario3)#boton crear grupo
+	#self.ui.btn_search5.clicked.connect(self.formulario4)#boton Editar grupo
+	self.ui.btn_search6.clicked.connect(self.formulario5)#boton eliminar grupo
+	self.ui.btn_search7.clicked.connect(self.buscar_usuario)#boton buscar
 		
 		
     def formulario2(self):#Acción botón Agregar
@@ -106,6 +99,21 @@ class MainPrincipal(QtGui.QWidget):
         self.load_usuarios(usuarios)
         
         		
+    def editar(self):
+        model = self.ui.table_usuarios.model()
+        index = self.ui.table_usuarios.currentIndex()
+        if index.row() == 0: #No se ha seleccionado una fila
+            self.errorMessageDialog = QtGui.QErrorMessage(self)
+            self.errorMessageDialog.showMessage("Debe seleccionar una fila")
+            return False
+
+        else:
+            codigo =str(model.index(index.row(), 1, QtCore.QModelIndex()).data())
+
+            formu2 = VentanaEdicion.Ventana2(self,codigo)
+            formu2.exec_()
+
+
     def delete(self):#elimina usuarios
         model=self.ui.table_usuarios.model()
         index=self.ui.table_usuarios.currentIndex()
@@ -128,8 +136,8 @@ class MainPrincipal(QtGui.QWidget):
                 self.ui.errorMessageDialog = QtGui.QErrorMessage(self)
                 self.ui.errorMessageDialog.showMessage("Error al eliminar el registro")
                 return False
-    
-					
+		
+			
 def run():
     app = QtGui.QApplication(sys.argv)
     main = MainPrincipal()
