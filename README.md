@@ -41,3 +41,6 @@ Para poder ver los usuarios ingresados se debe cerrar el programa y volver a
 ejecutar.
 Para poder ingresar un nuevo usuario se debe cumplir con los campos obligatorios.
 El password del usuario es guardada de acuerdo al algoritmo SHA512.
+Al editar usuario se encuentra incompleto ya que al ser ejecutado actualiza el campo
+pero al mismo tiempo crea un nuevo usuario, y en caso de que los campos esten en 
+blanco actualiza los campos en blanco.

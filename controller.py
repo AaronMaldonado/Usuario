@@ -34,7 +34,7 @@ def delete(id_usuario):
     exito = False
     con = connect()
     c = con.cursor()
-    query = "DELETE FROM usuarios  WHERE username = ?"
+    query = "DELETE FROM usuarios  WHERE id_usuario = ?"
     try:
         resultado = c.execute(query, [id_usuario])
         con.commit()
@@ -102,3 +102,19 @@ def buscar_usuario(word):
     usuarios = result.fetchall()
     con.close()
     return usuarios
+
+
+def editar(username,password,nombres,apellidos,email,fecha_nacimiento,id_grupo):
+    exito=False
+    con=connect()
+    c=con.cursor()
+    query="""UPDATE usuarios SET username=?, password=?,nombres=?, apellidos=?,email=?,fecha_nacimiento=? WHERE fk_id_grupo=?"""
+    try:
+	result=c.execute(query,[username,password,nombres,apellidos,email,fecha_nacimiento,id_grupo])
+        con.commit()
+        exito=True
+    except squile3.Error as e:
+	exito=False
+	print "Error:", e.args[0]
+    con.close()
+    return exito

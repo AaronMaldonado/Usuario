@@ -116,7 +116,7 @@ class MainPrincipal(QtGui.QWidget):
             return False
 			
         else:
-            codigo=model.index(index.row(),2,QtCore.QModelIndex()).data()		
+            codigo=model.index(index.row(),1,QtCore.QModelIndex()).data()		
             if(controller.delete(codigo)):#llama a metodo y elimina
                 self.load_usuarios()#Carga en la grilla el nuevo usuario
                 msgBox = QtGui.QMessageBox()

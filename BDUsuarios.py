@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#Archivo para crear la base de datos 
 
 import os
 import sqlite3

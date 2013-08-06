@@ -54,7 +54,7 @@ class Ui_Ventana(object):
         
     def retranslateUi(self, Window):
         Window.setWindowTitle(QtGui.QApplication.translate("Window", "Usuarios", None, QtGui.QApplication.UnicodeUTF8))
-        self.btn_search.setText(QtGui.QApplication.translate("Window","Eliminar Usuarios", None, QtGui.QApplication.UnicodeUTF8))
+        self.btn_search.setText(QtGui.QApplication.translate("Window","Eliminar Usuario", None, QtGui.QApplication.UnicodeUTF8))
         self.btn_search2.setText(QtGui.QApplication.translate("Window", "Editar Usuarios", None, QtGui.QApplication.UnicodeUTF8))
         self.btn_search3.setText(QtGui.QApplication.translate("Window", "Nuevo Usuario", None, QtGui.QApplication.UnicodeUTF8))
         self.btn_search4.setText(QtGui.QApplication.translate("Window", "Nuevo Grupo", None, QtGui.QApplication.UnicodeUTF8))

@@ -48,12 +48,13 @@ class Ventana_eliminar(QtGui.QDialog):
 	    return False
 			
 	else:
-            codigo=model.index(index.row(),0,QtCore.QModelIndex()).data()		
+            codigo=model.index(index.row(),1,QtCore.QModelIndex()).data()		
             if(controller.delete_grupo(codigo)):#llama a metodo delete_grupo 
 	        self.load_grupos()#Carga en la grilla el nuevo usuario
 		msgBox = QtGui.QMessageBox()
 		msgBox.setText("El Grupo fue eliminado.")
 		msgBox.exec_()
+                self.reject()
 		return True
 					
 	    else:

@@ -46,7 +46,7 @@ class Ventana(QtGui.QDialog):
 		resultado = controller.agregar(username,clave,nombres,apellidos,email,fecha_nacimiento,id_grupo)
 		self.errorMessageDialog=QtGui.QErrorMessage(self)
 		self.errorMessageDialog.showMessage("Se a creado correctamente el Usuario")
-		 
+		self.reject()
 	else:
 	    self.errorMessageDialog=QtGui.QErrorMessage(self)
 	    self.errorMessageDialog.showMessage("Password incorrectas")

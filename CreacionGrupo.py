@@ -27,6 +27,7 @@ class Ventana_grupos(QtGui.QDialog):
             msgBox = QtGui.QMessageBox()
             msgBox.setText("El Grupo fue creado.")
             msgBox.exec_()
+            self.reject()
 
 
     def set_listeners(self):#Acciones de botones
