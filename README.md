@@ -36,7 +36,8 @@ Por ultimo tenemos un archivo controller.py en los cuales esta creados los
 métodos que interactúan con la base de datos.
 
 Observaciones:
-
+Para poder ver los usuarios en le grilla se debe ejecutar en primer lugar
+el archivo que crea la base de datos llamado BDUsuarios.py
 Para poder ver los usuarios ingresados se debe cerrar el programa y volver a 
 ejecutar.
 Para poder ingresar un nuevo usuario se debe cumplir con los campos obligatorios.
