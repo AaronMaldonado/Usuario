@@ -26,20 +26,24 @@ class MainPrincipal(QtGui.QWidget):
         if usuarios is None:
             usuarios = controller.get_usuarios()
             #Completa busqueda 
-            busqueda = QtGui.QCompleter(map(lambda c: c["username"], usuarios), self) 
+            busqueda = QtGui.QCompleter(map(lambda c: c["username"],\
+                       usuarios), self) 
             busqueda.setCaseSensitivity(QtCore.Qt.CaseInsensitive)
             self.ui.search_box.setCompleter(busqueda)	
         #Creamos nuestra grilla			
         self.model = QtGui.QStandardItemModel(len(usuarios), 8)
         self.model.setHorizontalHeaderItem(0,QtGui.QStandardItem(u"grupo"))
-        self.model.setHorizontalHeaderItem(1,QtGui.QStandardItem(u"id_usuario"))
+        self.model.setHorizontalHeaderItem(1,QtGui.QStandardItem \
+        (u"id_usuario"))
         self.model.setHorizontalHeaderItem(2,QtGui.QStandardItem(u"Username"))
         self.model.setHorizontalHeaderItem(3,QtGui.QStandardItem(u"Password"))
         self.model.setHorizontalHeaderItem(4,QtGui.QStandardItem(u"Nombre"))			
         self.model.setHorizontalHeaderItem(5,QtGui.QStandardItem(u"Apellidos"))
         self.model.setHorizontalHeaderItem(6,QtGui.QStandardItem(u"Email"))
-        self.model.setHorizontalHeaderItem(7,QtGui.QStandardItem(u"Fecha Nacimiento"))
+        self.model.setHorizontalHeaderItem(7,QtGui.QStandardItem \
+        (u"Fecha Nacimiento"))
         r = 0
+
         for row in usuarios:#le agregamos los elementos 
             index = self.model.index(r, 0, QtCore.QModelIndex()); 
             self.model.setData(index, row['nombre'])
@@ -108,7 +112,8 @@ class MainPrincipal(QtGui.QWidget):
             return False
 
         else:
-            codigo =str(model.index(index.row(), 1, QtCore.QModelIndex()).data())
+            codigo =str(model.index(index.row(), 1, \
+            QtCore.QModelIndex()).data())
 
             formu2 = VentanaEdicion.Ventana2(self,codigo)
             formu2.exec_()
@@ -134,7 +139,8 @@ class MainPrincipal(QtGui.QWidget):
 				
             else:
                 self.ui.errorMessageDialog = QtGui.QErrorMessage(self)
-                self.ui.errorMessageDialog.showMessage("Error al eliminar el registro")
+                self.ui.errorMessageDialog.showMessage("Error al eliminar \
+                el registro")
                 return False
 		
 			

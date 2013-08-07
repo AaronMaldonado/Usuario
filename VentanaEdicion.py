@@ -52,12 +52,14 @@ class Ventana2(QtGui.QDialog):
 	fecha_nacimiento = self.ui.search_box7.text()
 	clave=hashlib.sha512(password).hexdigest()#Transforma password a algoritmo SHA512
 	clave2=hashlib.sha512(password2).hexdigest()
-	resultado = controller.editar(username,clave,nombres,apellidos,email,fecha_nacimiento,id_grupo)
+	resultado = controller.editar(username,clave,nombres,apellidos,email,\
+	fecha_nacimiento,id_grupo)
         if resultado:
             self.reject()#sale de la ventana al momento de editar
         else:
 	    self.errorMessageDialog = QtGui.QErrorMessage(self)
-            self.errorMessageDialog.showMessage("Los datos fueron mal ingresados")
+            self.errorMessageDialog.showMessage("Los datos fueron mal \
+            ingresados")
 
 
     def set_listeners(self):#Acciones de botones editar y salir

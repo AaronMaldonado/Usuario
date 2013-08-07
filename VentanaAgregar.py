@@ -25,7 +25,8 @@ class Ventana(QtGui.QDialog):
 	
 	
     def agregar_usuario(self):#agrega usuarios a la grilla
-	id_grupo= self.ui.combo_grupos.itemData(self.ui.combo_grupos.currentIndex())
+	id_grupo= self.ui.combo_grupos.itemData\
+	(self.ui.combo_grupos.currentIndex())
 	username = self.ui.search_box1.text()
 	password = self.ui.search_box2.text()
 	password2 = self.ui.search_box3.text()
@@ -39,17 +40,21 @@ class Ventana(QtGui.QDialog):
             #Verifica que los campos obligatorios estes rellenos
 	    if (username and nombres and apellidos and email)=="":
 	        self.errorMessageDialog=QtGui.QErrorMessage(self)
-		self.errorMessageDialog.showMessage("Debe Ingresar Username-Nombres-Apellidos-Email ")
+		self.errorMessageDialog.showMessage("Debe Ingresar Username-Nombres-\
+		Apellidos-Email ")
 				
 	    else:
 		#crea el nuevo usuario llamando al metodo agregar
-		resultado = controller.agregar(username,clave,nombres,apellidos,email,fecha_nacimiento,id_grupo)
+		resultado = controller.agregar(username,clave,nombres,apellidos,email,\
+		fecha_nacimiento,id_grupo)
 		self.errorMessageDialog=QtGui.QErrorMessage(self)
-		self.errorMessageDialog.showMessage("Se a creado correctamente el Usuario")
+		self.errorMessageDialog.showMessage("Se a creado correctamente el \
+		Usuario")
 		self.reject()
 	else:
 	    self.errorMessageDialog=QtGui.QErrorMessage(self)
-	    self.errorMessageDialog.showMessage("Password incorrectas vuelva a intentarlo :)")
+	    self.errorMessageDialog.showMessage("Password incorrectas vuelva a \
+	    intentarlo :)")
 	
 	
     def set_listeners(self):#Acciones de botones
