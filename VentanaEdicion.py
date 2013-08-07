@@ -22,8 +22,8 @@ class Ventana2(QtGui.QDialog):
 	for i in temp:
             #agrego los campos obtenidos en la grilla y los agrego a la ventana edicion
 	    self.ui.search_box1.setText(temp[1])#username
-	    password=str(temp[2]))#password
-	    self.ui.search_box2.setText(password
+	    password=str(temp[2])#password
+	    self.ui.search_box2.setText(password)
 	    password2=str(temp[2])#repite password
 	    self.ui.search_box3.setText(password2)
 	    self.ui.search_box4.setText(temp[3])#nombre
@@ -31,7 +31,7 @@ class Ventana2(QtGui.QDialog):
 	    self.ui.search_box6.setText(temp[5])#correo
 	    fecha_nacimiento=str(temp[6])#fecha nacimiento
 	    self.ui.search_box7.setText(fecha_nacimiento)
-		
+
 
     def load_grupos(self):#Carga los grupos en un combobox
 	grupos = controller.get_grupos()
