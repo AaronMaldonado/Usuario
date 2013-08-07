@@ -42,7 +42,7 @@ class Ventana_eliminar(QtGui.QDialog):
         model=self.ui.table_grupos.model()
         index=self.ui.table_grupos.currentIndex()
 		
-	if index.row()==0:# No se ha seleccionado fila
+	if index.row()==-1:# No se ha seleccionado fila
 	    self.errorMessageDialog = QtGui.QErrorMessage(self)
 	    self.errorMessageDialog.showMessage("Debe seleccionar una fila")
 	    return False
